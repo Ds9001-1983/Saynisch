@@ -1,4 +1,6 @@
-import { FUER_WEN } from "@/lib/content";
+import Image from "next/image";
+import { ALT, FUER_WEN } from "@/lib/content";
+import { MEDIA } from "@/lib/assets";
 import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
@@ -7,12 +9,24 @@ export function FuerWen() {
   return (
     <section id="fuer-wen" className="section-pad bg-paper">
       <div className="container-content">
-        <div className="max-w-[62ch]">
-          <Kicker className="mb-6">{FUER_WEN.kicker}</Kicker>
-          <RevealText as="h2" className="t-h2 text-ink">
-            {FUER_WEN.headline}
-          </RevealText>
-          <p className="t-body mt-6 text-slate">{FUER_WEN.body}</p>
+        <div className="grid gap-12 lg:grid-cols-[7fr_5fr] lg:items-center lg:gap-20">
+          <div className="max-w-[62ch]">
+            <Kicker className="mb-6">{FUER_WEN.kicker}</Kicker>
+            <RevealText as="h2" className="t-h2 text-ink">
+              {FUER_WEN.headline}
+            </RevealText>
+            <p className="t-body mt-6 text-slate">{FUER_WEN.body}</p>
+          </div>
+
+          <Reveal className="relative aspect-square overflow-hidden rounded-3xl bg-clay">
+            <Image
+              src={MEDIA.img.beratungstresen}
+              alt={ALT.beratungstresen}
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-cover"
+            />
+          </Reveal>
         </div>
 
         <Reveal stagger className="mt-14 grid gap-6 md:grid-cols-3">

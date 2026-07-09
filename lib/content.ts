@@ -12,8 +12,7 @@
 export const SITE = {
   brand: "SAYNISCH",
   claim: "Klar. Ruhig. Souverän.",
-  // [PLATZHALTER] Domain final bestätigen
-  url: "https://www.saynisch.de",
+  url: "https://saynisch.com",
   seoTitle:
     "SAYNISCH — Seminare, Workshops & Coaching für Beratungs- und Kommunikationskompetenz",
   seoDescription:
@@ -125,7 +124,7 @@ export const SCHWERPUNKTE = {
         "Grenzen setzen, ohne den Kontakt zu verlieren",
         "Sicherheit bei Einwänden, Rückfragen und Unzufriedenheit",
       ],
-      image: "seminarraum",
+      image: "praxisempfang",
     },
     {
       no: "03",
@@ -161,6 +160,41 @@ export const FORMATE = {
     { title: "Inhouse oder online", text: "Bei Ihnen vor Ort oder ortsunabhängig im digitalen Raum." },
   ],
   marquee: ["kombinierbar", "anpassbar", "praxisnah", "branchenoffen", "Inhouse", "online"],
+  // Compliance: nur Beratungs-/Kommunikations-/Stresskompetenz — keine Wirk-/Heilversprechen.
+  methoden: {
+    kicker: "Aus dem Methodenkoffer",
+    headline: "So kann das konkret aussehen.",
+    body: "Fünf Beispiele dafür, wie wir in Seminaren, Workshops und Coachings arbeiten — anschaulich, alltagsnah und direkt in Ihren Berufsalltag übertragbar.",
+    items: [
+      {
+        image: "stresslupe",
+        title: "Stresslupe",
+        text: "Gemeinsam genau hinschauen: Was löst Druck aus — und was davon lässt sich beeinflussen?",
+      },
+      {
+        image: "stresslandkarte",
+        title: "Stresslandkarte",
+        text: "Auslöser, Gedanken, Körperreaktionen und Ressourcen sichtbar ordnen — das schafft Orientierung.",
+      },
+      {
+        image: "perspektivwechsel",
+        title: "Perspektivwechsel in 3 Stühlen",
+        text: "Der Wechsel zwischen Ich, Gegenüber und Beobachter:in schult Empathie und Klarheit im Gespräch.",
+      },
+      {
+        image: "formulierungswerkstatt",
+        title: "Formulierungswerkstatt",
+        text: "Schwierige Sätze gemeinsam neu formulieren: zielklar, wertschätzend, lösungsorientiert, verständlich.",
+      },
+      {
+        image: "methodenkoffer",
+        title: "Methodenkoffer",
+        text: "Reflexionsfragen, Übungen und Visualisierungen — Sie nehmen mit, was zu Ihrem Alltag passt.",
+      },
+    ],
+    footnote:
+      "Methoden dienen der Übung und Reflexion — Auswahl und Tiefe stimmen wir auf Ihre Gruppe und Ihren Anlass ab.",
+  },
   footnote: "Schwerpunkte sind frei kombinierbar — wir bauen das Passende zusammen.",
   cta: { label: "Format besprechen", href: "#kontakt" },
 } as const;
@@ -303,15 +337,25 @@ export const FOOTER = {
   },
 } as const;
 
-/** Alt-Texte für die KI-Bildwelt (atmosphärisch, ohne Gesichter) */
+/** Alt-Texte der Bildwelt (beschreibend, ruhig; Szenen- und Methodenbilder zeigen Personen bzw. Text als Bedeutungsträger) */
 export const ALT = {
   beratung:
     "Ruhige Beratungssituation an einem hellen Holztisch, Hände in offener Gesprächsgeste, ohne erkennbare Gesichter.",
-  seminarraum: "Heller, ruhiger Seminarraum mit hellen Holzstühlen in lockerem Kreis.",
-  nemGespraech: "Sachliche Beratungsszene mit Notizbuch und Wasserglas auf hellem Tisch.",
-  salbei: "Makroaufnahme eines Salbeiblatts mit Morgentau in weichem Licht.",
+  praxisempfang:
+    "Wartebereich einer Praxis: Ein aufgebrachter Besucher gestikuliert am Empfangstresen, eine Mitarbeiterin reagiert sichtlich angespannt.",
+  beratungstresen:
+    "Beratungstresen: Eine Mitarbeiterin fasst sich erschöpft an die Stirn, während ein Kunde gestikulierend auf sie einredet.",
   wasser: "Ruhige Makroaufnahme einer einzelnen Welle auf heller, stiller Wasseroberfläche.",
   ansatz: "Weiches Tageslicht in einem ruhigen, hellen Raum mit Pflanze im Hintergrund.",
+  stresslupe: "Goldene Lupe über dem handgeschriebenen Wort „Stress“ auf einem hellen Holztisch.",
+  stresslandkarte:
+    "Handgezeichnete Landkarte mit Fluss und Bergen und den Stationen Auslöser, Gedanken, Emotionen, Körperreaktionen und Ressourcen.",
+  perspektivwechsel:
+    "Drei Stühle nebeneinander mit beschrifteten Kissen: Ich, andere Person und Beobachter:in.",
+  formulierungswerkstatt:
+    "Aufgeschlagenes Notizbuch mit den Kriterien zielklar, wertschätzend, lösungsorientiert und verständlich, daneben ein Stift.",
+  methodenkoffer:
+    "Geöffneter petrolfarbener Koffer mit Methodenkarten für Reflexionsfragen, Übungen, Visualisierung und Ressourcen.",
 } as const;
 
 export const MICRO = {

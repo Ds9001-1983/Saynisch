@@ -10,11 +10,15 @@ export const MEDIA = {
   heroVideoMp4: "/media/hero.mp4",
   img: {
     beratung: "/media/img/beratung.avif",
-    seminarraum: "/media/img/seminarraum.avif",
-    nemGespraech: "/media/img/nem-gespraech.avif",
-    salbei: "/media/img/salbei.avif",
+    praxisempfang: "/media/img/praxisempfang.avif",
+    beratungstresen: "/media/img/beratungstresen.avif",
     wasser: "/media/img/wasser.avif",
     ansatz: "/media/img/ansatz.avif",
+    stresslupe: "/media/img/stresslupe.avif",
+    stresslandkarte: "/media/img/stresslandkarte.avif",
+    perspektivwechsel: "/media/img/perspektivwechsel.avif",
+    formulierungswerkstatt: "/media/img/formulierungswerkstatt.avif",
+    methodenkoffer: "/media/img/methodenkoffer.avif",
   },
   ogImage: "/media/og.png",
 } as const;
