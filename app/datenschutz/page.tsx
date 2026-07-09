@@ -25,8 +25,6 @@ export default function DatenschutzPage() {
         {CONTACT.street}, {CONTACT.city}
         <br />
         E-Mail: {CONTACT.email}
-        <br />
-        Telefon: {CONTACT.phone}
       </p>
 
       <h2>2. Hosting und Server-Logfiles</h2>

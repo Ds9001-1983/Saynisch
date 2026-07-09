@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
-import { Mail, Phone, Check } from "lucide-react";
+import { Mail, Check } from "lucide-react";
 import { KONTAKT, CONTACT } from "@/lib/content";
 import { Kicker } from "@/components/ui/Kicker";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -35,14 +35,6 @@ export function Kontakt() {
             >
               <Mail size={18} className="text-sage-deep" />
               {CONTACT.email}
-            </a>
-            <a
-              href={CONTACT.phoneHref}
-              className="link-underline inline-flex items-center gap-3 text-ink"
-              data-cursor="hover"
-            >
-              <Phone size={18} className="text-sage-deep" />
-              {CONTACT.phone}
             </a>
           </div>
           <p className="t-caption mt-8">{KONTAKT.footnote}</p>

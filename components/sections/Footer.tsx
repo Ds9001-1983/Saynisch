@@ -47,15 +47,6 @@ export function Footer() {
                   {CONTACT.email}
                 </a>
               </li>
-              <li>
-                <a
-                  href={CONTACT.phoneHref}
-                  className="link-underline hover:text-sand-light"
-                  data-cursor="hover"
-                >
-                  {CONTACT.phone}
-                </a>
-              </li>
             </ul>
             <h2 className="t-kicker mb-5 mt-8 text-sage-haze">Rechtliches</h2>
             <ul className="flex flex-col gap-2.5 text-sand-light/80">

@@ -23,15 +23,16 @@ export const SITE = {
     "Fortbildung für Menschen in beratenden und gesundheitsnahen Arbeitsfeldern: Gesprächssicherheit, Beratungskompetenz und Stresskompetenz — praxisnah, wertschätzend, in den Alltag übertragbar.",
 } as const;
 
-/** [PLATZHALTER] — echte Kontakt-/Impressumsdaten vor Launch eintragen */
+/** [PLATZHALTER] bei name/vatId/qualification — vor Launch eintragen.
+ *  Telefon erscheint NUR im Impressum (Kundenwunsch: Kontakt sonst ausschließlich übers Formular). */
 export const CONTACT = {
   name: "[Vor- und Nachname]",
   role: "Seminare · Coaching · Fortbildungen",
   email: "kontakt@saynisch.de",
-  phone: "+49 [Telefonnummer]",
-  phoneHref: "tel:+49000000000",
-  street: "[Straße und Hausnummer]",
-  city: "[PLZ und Ort]",
+  phone: "02293 816957",
+  phoneHref: "tel:+492293816957",
+  street: "Am Sonnenhang 16",
+  city: "51588 Nümbrecht",
   vatId: "[USt-IdNr., falls vorhanden]",
   // Echte berufliche Qualifikation (gesundheits-/apothekennah) — wahrheitsgemäß eintragen
   qualification: "[konkrete Qualifikation, z. B. PTA / PKA / Pflegefachkraft]",
