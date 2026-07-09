@@ -12,7 +12,8 @@
 export const SITE = {
   brand: "SAYNISCH",
   claim: "Klar. Ruhig. Souverän.",
-  url: "https://saynisch.com",
+  // www ist die Vercel-Primärdomain (Apex leitet per 308 auf www um)
+  url: "https://www.saynisch.com",
   seoTitle:
     "SAYNISCH — Seminare, Workshops & Coaching für Beratungs- und Kommunikationskompetenz",
   seoDescription:
