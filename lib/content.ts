@@ -23,12 +23,12 @@ export const SITE = {
     "Fortbildung für Menschen in beratenden und gesundheitsnahen Arbeitsfeldern: Gesprächssicherheit, Beratungskompetenz und Stresskompetenz — praxisnah, wertschätzend, in den Alltag übertragbar.",
 } as const;
 
-/** [PLATZHALTER] bei name/vatId/qualification — vor Launch eintragen.
+/** [PLATZHALTER] bei vatId/qualification — vor Launch eintragen.
  *  Telefon erscheint NUR im Impressum (Kundenwunsch: Kontakt sonst ausschließlich übers Formular). */
 export const CONTACT = {
-  name: "[Vor- und Nachname]",
+  name: "Andrea Saynisch",
   role: "Seminare · Coaching · Fortbildungen",
-  email: "kontakt@saynisch.de",
+  email: "kontakt@saynisch.com",
   phone: "02293 816957",
   phoneHref: "tel:+492293816957",
   street: "Am Sonnenhang 16",
