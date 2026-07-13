@@ -78,13 +78,16 @@ export async function submitKontakt(
     .filter(Boolean)
     .join("\n");
 
-  // SMTP-Versand über das eigene Postfach (Alfahosting). Der Absender muss die
-  // Postfach-Adresse sein, sonst lehnt der Server ab — Antworten laufen über Reply-To.
+  // SMTP-Versand über das eigene Postfach (Alfahosting). Der SMTP-Login kann ein
+  // Systemnutzer sein (z. B. web…) — als Absender muss aber eine echte Adresse der
+  // Domain stehen; Antworten laufen über Reply-To.
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
   const host = process.env.SMTP_HOST ?? "alfa3102.alfahosting-server.de";
   const port = Number(process.env.SMTP_PORT ?? 465);
   const to = process.env.CONTACT_TO ?? CONTACT.email;
+  const fromAddr =
+    process.env.SMTP_FROM ?? (smtpUser && isEmail(smtpUser) ? smtpUser : CONTACT.email);
 
   // Ohne Zugangsdaten (Entwicklung / noch nicht konfiguriert): serverseitig loggen,
   // damit keine Anfrage verloren geht — UX-Fluss bleibt testbar.
@@ -102,7 +105,7 @@ export async function submitKontakt(
     });
     const replyTo = isEmail(contact) ? contact : undefined;
     await transporter.sendMail({
-      from: `"${SITE.brand} Website" <${smtpUser}>`,
+      from: `"${SITE.brand} Website" <${fromAddr}>`,
       to,
       subject,
       text,
