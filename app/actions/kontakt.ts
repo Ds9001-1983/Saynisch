@@ -1,7 +1,7 @@
 "use server";
 
 import { headers } from "next/headers";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { CONTACT, SITE } from "@/lib/content";
 
 export interface KontaktState {
@@ -78,28 +78,36 @@ export async function submitKontakt(
     .filter(Boolean)
     .join("\n");
 
-  const apiKey = process.env.RESEND_API_KEY;
+  // SMTP-Versand über das eigene Postfach (Alfahosting). Der Absender muss die
+  // Postfach-Adresse sein, sonst lehnt der Server ab — Antworten laufen über Reply-To.
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
+  const host = process.env.SMTP_HOST ?? "alfa3102.alfahosting-server.de";
+  const port = Number(process.env.SMTP_PORT ?? 465);
   const to = process.env.CONTACT_TO ?? CONTACT.email;
-  const from = process.env.CONTACT_FROM ?? `${SITE.brand} Website <onboarding@resend.dev>`;
 
-  // Ohne API-Key (Entwicklung / noch nicht konfiguriert): serverseitig loggen,
+  // Ohne Zugangsdaten (Entwicklung / noch nicht konfiguriert): serverseitig loggen,
   // damit keine Anfrage verloren geht — UX-Fluss bleibt testbar.
-  if (!apiKey) {
-    console.warn("[Kontakt] RESEND_API_KEY fehlt — Anfrage nur geloggt:\n" + text);
+  if (!smtpUser || !smtpPass) {
+    console.warn("[Kontakt] SMTP_USER/SMTP_PASS fehlt — Anfrage nur geloggt:\n" + text);
     return { status: "success" };
   }
 
   try {
-    const resend = new Resend(apiKey);
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user: smtpUser, pass: smtpPass },
+    });
     const replyTo = isEmail(contact) ? contact : undefined;
-    const { error } = await resend.emails.send({
-      from,
+    await transporter.sendMail({
+      from: `"${SITE.brand} Website" <${smtpUser}>`,
       to,
       subject,
       text,
       ...(replyTo ? { replyTo } : {}),
     });
-    if (error) throw new Error(error.message);
     return { status: "success" };
   } catch (err) {
     console.error("[Kontakt] Versand fehlgeschlagen:", err);

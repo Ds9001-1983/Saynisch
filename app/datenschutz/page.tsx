@@ -76,8 +76,8 @@ export default function DatenschutzPage() {
       <p>
         Bitte geben Sie im Nachrichtenfeld <strong>keine</strong> Gesundheitsdaten
         oder andere besondere Kategorien personenbezogener Daten (Art. 9 DSGVO) an.
-        Der Versand erfolgt über den E-Mail-Dienstleister Resend (EU-Region), mit
-        dem ein Auftragsverarbeitungsvertrag besteht. Ihre Angaben werden gelöscht,
+        Der Versand erfolgt über das E-Mail-Postfach meines Hosting-Anbieters
+        Alfahosting (Serverstandort Deutschland). Ihre Angaben werden gelöscht,
         sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine
         gesetzlichen Aufbewahrungspflichten entgegenstehen.
       </p>

@@ -10,7 +10,7 @@ Stil: „Klare Klinik / Trust" — hell, ruhig, vertrauensvoll, ein Salbeigrün-
 - **Next.js 16** (App Router, Turbopack) · **React 19** · **TypeScript** · **Tailwind v4**
 - **GSAP 3.15** (ScrollTrigger, SplitText, CustomEase — seit 3.13 alle Plugins frei)
 - **Lenis** (Smooth Scroll) · **three / @react-three/fiber / drei** (WebGL-Aurora)
-- **Resend** (Kontaktformular-Versand) · **sharp** (Bild-Komprimierung)
+- **nodemailer** (Kontaktformular-Versand per SMTP) · **sharp** (Bild-Komprimierung)
 - Fonts self-hosted via `next/font` (Fraunces · Hanken Grotesk · Martian Mono) — kein Google-CDN
 
 ## Entwicklung
@@ -24,8 +24,9 @@ npm run lint
 
 ## Umgebungsvariablen
 
-Siehe [.env.example](.env.example). Für den Formular-Versand `RESEND_API_KEY`
-(EU-Region) setzen; ohne Key wird die Anfrage in Entwicklung nur geloggt.
+Siehe [.env.example](.env.example). Für den Formular-Versand `SMTP_USER` +
+`SMTP_PASS` des Postfachs setzen (Versand per SMTP über das Alfahosting-Postfach);
+ohne Zugangsdaten wird die Anfrage in Entwicklung nur geloggt.
 
 ## Medien neu generieren (optional)
 
@@ -43,7 +44,7 @@ In [lib/content.ts](lib/content.ts) (`CONTACT`, `SITE.url`) und den Rechtsseiten
 
 - Voller Name, ladungsfähige Anschrift, E-Mail, Telefon, ggf. USt-IdNr.
 - Reale berufliche Qualifikation (Impressum + „Mein Ansatz") — wahrheitsgemäß (UWG)
-- Domain bestätigen, `RESEND_API_KEY` + AVV mit Resend, AVV mit dem Hoster
+- Domain bestätigen, SMTP-Zugangsdaten setzen, AVV mit dem Hoster
 - Impressum & Datenschutz juristisch final prüfen (insb. Health-Claims rund um NEM)
 
 ## Struktur
