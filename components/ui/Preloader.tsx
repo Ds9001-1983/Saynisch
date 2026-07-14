@@ -42,8 +42,9 @@ export function Preloader() {
 
     const trackedTasks = tasks.map((p) => Promise.resolve(p).finally(tick));
 
-    // Harte Timeout-Absicherung: Loader hängt nie (z. B. Netzfehler)
-    const timeout = new Promise<void>((r) => setTimeout(r, 7000));
+    // Harte Timeout-Absicherung: Loader hängt nie (z. B. Netzfehler).
+    // 4s statt 7s — es warten nur noch ~30 KB Bilder + Fonts.
+    const timeout = new Promise<void>((r) => setTimeout(r, 4000));
 
     let cancelled = false;
 

@@ -29,9 +29,12 @@ export interface CriticalAsset {
   src: string;
 }
 
-/** Assets, die der Preloader vor dem Reveal abwartet (best effort). */
+/** Assets, die der Preloader vor dem Reveal abwartet (best effort).
+ *  Bewusst KEIN Video: Mobile-Browser feuern canplaythrough ohne Interaktion
+ *  oft nie → der Loader säße bis zum Timeout fest. Das Hero-Video ist
+ *  dekorativ, das Poster deckt den ersten Frame ab, und das <video> im Hero
+ *  lädt selbst (preload="metadata") — doppeltes Laden entfällt zugleich. */
 export const CRITICAL_ASSETS: CriticalAsset[] = [
   { type: "image", src: MEDIA.heroPoster },
-  { type: "video", src: MEDIA.heroVideoWebm },
   { type: "image", src: MEDIA.img.beratung },
 ];
