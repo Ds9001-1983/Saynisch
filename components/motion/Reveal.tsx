@@ -43,28 +43,68 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
 
-    const targets: gsap.TweenTarget = stagger
+    const targets: HTMLElement[] = stagger
       ? Array.from(el.querySelectorAll<HTMLElement>("[data-reveal-item]"))
-      : el;
+      : [el];
 
     if (reduced) {
       gsap.set(targets, { clearProps: "all", opacity: 1, y: 0 });
       return;
     }
 
+    // Trigger per IntersectionObserver statt ScrollTrigger: IO misst echte
+    // Sichtbarkeit beim Callback und liefert bei observe() immer einen
+    // Initial-Callback — immun gegen Font-Swap/URL-Bar-Resize, bei denen
+    // vorberechnete Scroll-Positionen verstalten und once-Trigger nie feuern.
+    let io: IntersectionObserver | null = null;
+    let failSafe = 0;
+
     const ctx = gsap.context(() => {
-      gsap.from(targets, {
-        opacity: 0,
-        y,
+      let tween: gsap.core.Tween | null = null;
+      let played = false;
+
+      const play = () => {
+        if (played) return;
+        played = true;
+        io?.disconnect();
+        window.clearTimeout(failSafe);
+        if (tween) tween.play();
+        else gsap.set(targets, { opacity: 1, y: 0 });
+      };
+
+      // Fail-safe VOR dem Verstecken scharf stellen: wirft irgendetwas ab
+      // hier, ist der Inhalt entweder noch sichtbar oder wird hart gezeigt.
+      failSafe = window.setTimeout(play, 10000);
+      gsap.set(targets, { opacity: 0, y });
+      tween = gsap.to(targets, {
+        opacity: 1,
+        y: 0,
         duration: 0.9,
         ease: EASE.calm,
         delay,
         stagger: stagger ? 0.1 : 0,
-        scrollTrigger: { trigger: el, start: "top 85%", once: true },
+        paused: true,
       });
+
+      if (typeof IntersectionObserver === "undefined") {
+        play();
+        return;
+      }
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) play();
+        },
+        // -15% unten ≙ dem bisherigen ScrollTrigger-Start "top 85%"
+        { rootMargin: "0px 0px -15% 0px", threshold: 0 },
+      );
+      io.observe(el);
     }, el);
 
-    return () => ctx.revert();
+    return () => {
+      io?.disconnect();
+      window.clearTimeout(failSafe);
+      ctx.revert();
+    };
   }, [reduced, stagger, delay, y]);
 
   return (

@@ -15,6 +15,10 @@ let registered = false;
 if (typeof window !== "undefined" && !registered) {
   gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
+  // Android: URL-Bar-Ein-/Ausblenden feuert Resizes — ohne dieses Flag
+  // rechnet ScrollTrigger mitten im Scroll alle Positionen neu.
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
   // Calm-Eases — exakt deckungsgleich mit den CSS-cubic-beziers in globals.css
   CustomEase.create("calm", "M0,0 C0.22,1 0.36,1 1,1");
   CustomEase.create("calm-inout", "M0,0 C0.65,0 0.35,1 1,1");

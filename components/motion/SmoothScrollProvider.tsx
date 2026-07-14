@@ -1,19 +1,35 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useReducedMotion } from "./useReducedMotion";
+import { useLoading } from "@/components/providers/LoadingContext";
 
 interface LenisCtx {
   scrollTo: (target: string | number | HTMLElement, opts?: { offset?: number }) => void;
+  /** Lenis pausieren (z.B. bei offenem Mobile-Menü). No-Op ohne Lenis. */
+  stop: () => void;
+  start: () => void;
 }
 
-const Ctx = createContext<LenisCtx>({ scrollTo: () => {} });
+const Ctx = createContext<LenisCtx>({
+  scrollTo: () => {},
+  stop: () => {},
+  start: () => {},
+});
 export const useSmoothScroll = () => useContext(Ctx);
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const reduced = useReducedMotion();
+  const { ready } = useLoading();
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -35,7 +51,13 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     const raf = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
-    ScrollTrigger.refresh();
+
+    // Trigger-Positionen erst berechnen, wenn das Layout stabil ist:
+    // Font-Swap und spät dekodierte Bilder verschieben sonst alle Startpunkte.
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
+    const onLoad = () => ScrollTrigger.refresh();
+    if (document.readyState === "complete") onLoad();
+    else window.addEventListener("load", onLoad);
 
     // Tastatur-Fokus-Sync: fokussiertes Element in den Viewport holen (Lenis/Pin-A11y)
     const onFocusIn = (e: FocusEvent) => {
@@ -49,6 +71,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     document.addEventListener("focusin", onFocusIn);
 
     return () => {
+      window.removeEventListener("load", onLoad);
       document.removeEventListener("focusin", onFocusIn);
       gsap.ticker.remove(raf);
       lenis.destroy();
@@ -56,7 +79,12 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     };
   }, [reduced]);
 
-  const scrollTo: LenisCtx["scrollTo"] = (target, opts) => {
+  // Preloader weg → Layout hat sich gesetzt → Positionen aktualisieren
+  useEffect(() => {
+    if (ready) ScrollTrigger.refresh();
+  }, [ready]);
+
+  const scrollTo = useCallback<LenisCtx["scrollTo"]>((target, opts) => {
     const offset = opts?.offset ?? -80;
     if (lenisRef.current) {
       lenisRef.current.scrollTo(target, { offset, duration: 1.4 });
@@ -67,7 +95,11 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     } else {
       window.scrollTo({ top: target });
     }
-  };
+  }, []);
 
-  return <Ctx.Provider value={{ scrollTo }}>{children}</Ctx.Provider>;
+  const stop = useCallback(() => lenisRef.current?.stop(), []);
+  const start = useCallback(() => lenisRef.current?.start(), []);
+  const value = useMemo(() => ({ scrollTo, stop, start }), [scrollTo, stop, start]);
+
+  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -46,6 +46,9 @@ export function MagneticButton({
   useEffect(() => {
     const el = ref.current;
     if (!el || reduced) return;
+    // Magnetik nur bei echtem Zeiger — auf Touch erzeugen pointermove-Events
+    // beim Tippen sonst x/y-Versätze.
+    if (!window.matchMedia("(pointer: fine)").matches) return;
 
     const onMove = (e: PointerEvent) => {
       const r = el.getBoundingClientRect();
@@ -89,8 +92,10 @@ export function MagneticButton({
         className={classes}
         onClick={(e) => {
           e.preventDefault();
-          scrollTo(href!);
+          // onClick zuerst: Aufrufer entsperren hier ggf. den Scroll-Lock —
+          // Lenis' scrollTo ist ein No-Op, solange die Instanz gestoppt ist.
           onClick?.();
+          scrollTo(href!);
         }}
         {...cursorProps}
       >
