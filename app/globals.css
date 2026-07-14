@@ -357,6 +357,11 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+.marquee {
+  /* Clippt den max-content-Track: ohne dies sprengt er die Layout-Breite —
+     Mobile-Chrome zoomt dann die GANZE Seite raus, bis der Track passt. */
+  overflow-x: clip;
+}
 .marquee-track {
   display: inline-flex;
   width: max-content;
