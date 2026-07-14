@@ -16,9 +16,11 @@ Fläche). Ansprache **Sie**. Marke = Wortmarke „SAYNISCH", Person in Ich-Form.
 - **Fonts** self-hosted via `next/font` (kein Google-CDN — DSGVO). Kein externes Embed.
 - GSAP ≥ 3.13: SplitText/CustomEase sind frei und im Paket — kein Club/Lizenz nötig.
 
-## Platzhalter (vor Launch ersetzen)
-`CONTACT` und `SITE.url` in `lib/content.ts` sowie Impressum/Datenschutz enthalten
-`[PLATZHALTER]`. Echte Kontakt-/Rechtsdaten + reale Qualifikation eintragen.
+## Rechtsdaten (Stand Juli 2026: eingetragen)
+Kontakt-/Rechtsdaten in `lib/content.ts` und Impressum/Datenschutz sind real
+(Andrea Saynisch; Qualifikation: staatlich examinierte Krankenschwester,
+Heilpraktikerin, Coach — inkl. HeilprG-Pflichtangabe). Keine USt-IdNr.
+vorhanden. Hosting-Angabe im Datenschutz: Vercel (USA, DPF/SCC).
 
 ## Befehle
 `npm run dev` · `npm run build` · `npm run lint` · Medien: `scripts/gen-media.mjs`.

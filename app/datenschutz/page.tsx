@@ -29,14 +29,17 @@ export default function DatenschutzPage() {
 
       <h2>2. Hosting und Server-Logfiles</h2>
       <p>
-        Diese Website wird bei einem Anbieter innerhalb der EU gehostet. Beim
-        Aufruf der Website werden automatisch Informationen in sogenannten
-        Server-Logfiles erfasst, die Ihr Browser übermittelt: IP-Adresse,
-        Datum und Uhrzeit des Zugriffs, aufgerufene Seite, übertragene
-        Datenmenge, Referrer-URL, Browsertyp und Betriebssystem. Diese
-        Verarbeitung erfolgt zur Gewährleistung eines störungsfreien Betriebs
-        und der Sicherheit (Art. 6 Abs. 1 lit. f DSGVO). Mit dem Hosting-Anbieter
-        besteht ein Vertrag zur Auftragsverarbeitung (AVV).
+        Diese Website wird bei Vercel Inc., 340 S Lemon Ave #4133, Walnut,
+        CA 91789, USA gehostet und über deren Content-Delivery-Netzwerk
+        ausgeliefert. Beim Aufruf der Website werden automatisch Informationen
+        in sogenannten Server-Logfiles erfasst, die Ihr Browser übermittelt:
+        IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite,
+        übertragene Datenmenge, Referrer-URL, Browsertyp und Betriebssystem.
+        Diese Verarbeitung erfolgt zur Gewährleistung eines störungsfreien
+        Betriebs und der Sicherheit (Art. 6 Abs. 1 lit. f DSGVO). Mit Vercel
+        besteht ein Vertrag zur Auftragsverarbeitung (AVV); soweit Daten in
+        die USA übertragen werden, ist Vercel nach dem EU-U.S. Data Privacy
+        Framework zertifiziert, ergänzend gelten Standardvertragsklauseln.
       </p>
 
       <h2>3. Schriftarten (Fonts)</h2>
@@ -67,9 +70,9 @@ export default function DatenschutzPage() {
       <h2>6. Kontaktformular und Kontaktaufnahme</h2>
       <p>
         Wenn Sie mir über das Kontaktformular oder per E-Mail eine Anfrage senden,
-        verarbeite ich die von Ihnen angegebenen Daten (Name, Kontaktangabe,
-        optional Einrichtung/Team und Format sowie Ihre Nachricht) zur Bearbeitung
-        Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO
+        verarbeite ich die von Ihnen angegebenen Daten (Name, E-Mail-Adresse,
+        optional Telefonnummer, Einrichtung/Team und Format sowie Ihre
+        Nachricht) zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO
         (vorvertragliche Maßnahmen) bzw. lit. a DSGVO (Ihre Einwilligung über die
         Checkbox).
       </p>
@@ -113,11 +116,6 @@ export default function DatenschutzPage() {
         oder die Rechtslage ändert.
       </p>
 
-      <p className="mt-8 text-sm">
-        [PLATZHALTER] Diese Datenschutzerklärung ist eine Vorlage mit Platzhaltern.
-        Sie ist vor Veröffentlichung an die tatsächlich eingesetzte Technik
-        (Hosting, E-Mail-Dienst) anzupassen und rechtlich final zu prüfen.
-      </p>
     </LegalShell>
   );
 }

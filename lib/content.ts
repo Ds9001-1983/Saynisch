@@ -6,7 +6,6 @@
  * Heilung. Verben: stärken/fördern/schulen/begleiten/einordnen statt
  * heilen/wirken/vorbeugen. Siehe Disclaimer.
  *
- * [PLATZHALTER] = vor Launch durch echte Kundendaten zu ersetzen.
  */
 
 export const SITE = {
@@ -23,8 +22,8 @@ export const SITE = {
     "Fortbildung für Menschen in beratenden und gesundheitsnahen Arbeitsfeldern: Gesprächssicherheit, Beratungskompetenz und Stresskompetenz — praxisnah, wertschätzend, in den Alltag übertragbar.",
 } as const;
 
-/** [PLATZHALTER] bei vatId/qualification — vor Launch eintragen.
- *  Telefon erscheint NUR im Impressum (Kundenwunsch: Kontakt sonst ausschließlich übers Formular). */
+/** Telefon erscheint NUR im Impressum (Kundenwunsch: Kontakt sonst ausschließlich übers Formular).
+ *  Keine USt-IdNr. vorhanden — falls doch, Abschnitt im Impressum wieder ergänzen. */
 export const CONTACT = {
   name: "Andrea Saynisch",
   role: "Seminare · Coaching · Fortbildungen",
@@ -33,9 +32,7 @@ export const CONTACT = {
   phoneHref: "tel:+492293816957",
   street: "Am Sonnenhang 16",
   city: "51588 Nümbrecht",
-  vatId: "[USt-IdNr., falls vorhanden]",
-  // Echte berufliche Qualifikation (gesundheits-/apothekennah) — wahrheitsgemäß eintragen
-  qualification: "[konkrete Qualifikation, z. B. PTA / PKA / Pflegefachkraft]",
+  qualification: "Staatlich examinierte Krankenschwester, Heilpraktikerin, Coach",
 } as const;
 
 export const NAV = [

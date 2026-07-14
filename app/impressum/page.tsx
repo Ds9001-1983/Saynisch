@@ -28,20 +28,14 @@ export default function ImpressumPage() {
         E-Mail: {CONTACT.email}
       </p>
 
-      <h2>Umsatzsteuer-Identifikationsnummer</h2>
-      <p>
-        Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:{" "}
-        {CONTACT.vatId}
-      </p>
-
       <h2>Berufliche Qualifikation</h2>
+      <p>{CONTACT.qualification}</p>
       <p>
-        Qualifikation: {CONTACT.qualification}
-        <br />
-        <span className="text-sm">
-          [PLATZHALTER] Bitte die tatsächliche, wahrheitsgemäße Berufs- bzw.
-          Qualifikationsbezeichnung eintragen.
-        </span>
+        Die Berufsbezeichnung „Heilpraktikerin“ wurde in der Bundesrepublik
+        Deutschland verliehen. Zuständige Aufsichtsbehörde: das örtlich
+        zuständige Gesundheitsamt. Berufsrechtliche Regelung:
+        Heilpraktikergesetz (HeilprG) nebst Durchführungsverordnung, abrufbar
+        unter www.gesetze-im-internet.de.
       </p>
 
       <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
@@ -82,11 +76,6 @@ export default function ImpressumPage() {
         solche gekennzeichnet.
       </p>
 
-      <p className="mt-8 text-sm">
-        [PLATZHALTER] Dieses Impressum enthält Platzhalter. Vor Veröffentlichung
-        sind alle Angaben durch die echten Daten zu ersetzen und rechtlich final
-        zu prüfen.
-      </p>
     </LegalShell>
   );
 }
