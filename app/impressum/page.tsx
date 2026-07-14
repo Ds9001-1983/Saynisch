@@ -67,6 +67,14 @@ export default function ImpressumPage() {
         ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
       </p>
 
+      <h2>KI-generierte Inhalte</h2>
+      <p>
+        Das auf dieser Website verwendete Bild- und Videomaterial ist
+        KI-generiert und entsprechend gekennzeichnet (Art. 50 Verordnung (EU)
+        2024/1689 — „AI Act“). Die Darstellungen zeigen keine realen Personen,
+        Räume oder Ereignisse.
+      </p>
+
       <h2>Urheberrecht</h2>
       <p>
         Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen

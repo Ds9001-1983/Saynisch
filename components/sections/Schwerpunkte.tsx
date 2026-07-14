@@ -6,6 +6,7 @@ import { SCHWERPUNKTE, ALT } from "@/lib/content";
 import { MEDIA } from "@/lib/assets";
 import { cn } from "@/lib/utils";
 import { Kicker } from "@/components/ui/Kicker";
+import { MediaBadge } from "@/components/ui/MediaBadge";
 
 type ImgKey = keyof typeof MEDIA.img;
 
@@ -93,6 +94,7 @@ export function Schwerpunkte() {
             >
               {SCHWERPUNKTE.panels[active].no}
             </span>
+            <MediaBadge />
           </div>
         </div>
 
@@ -115,6 +117,7 @@ export function Schwerpunkte() {
                   sizes="100vw"
                   className="object-cover"
                 />
+                <MediaBadge />
               </div>
               <PanelBody panel={panel} />
             </div>

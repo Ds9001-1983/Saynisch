@@ -7,6 +7,7 @@ import { HERO } from "@/lib/content";
 import { MEDIA } from "@/lib/assets";
 import { Kicker } from "@/components/ui/Kicker";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { MediaBadge } from "@/components/ui/MediaBadge";
 import { RevealText } from "@/components/motion/RevealText";
 import { useLoading } from "@/components/providers/LoadingContext";
 import { useReducedMotion } from "@/components/motion/useReducedMotion";
@@ -72,6 +73,9 @@ export function Hero() {
         <source src={MEDIA.heroVideoWebm} type="video/webm" />
         <source src={MEDIA.heroVideoMp4} type="video/mp4" />
       </video>
+
+      {/* AI Act Art. 50: sichtbare Kennzeichnung des KI-generierten Videos */}
+      <MediaBadge className="bottom-6 left-[var(--side-padding)] right-auto" />
 
       {/* WCAG 2.2.2: sichtbarer Pausier-Mechanismus für das Autoplay-Video */}
       <button

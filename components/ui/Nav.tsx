@@ -134,7 +134,8 @@ export function Nav() {
                   }}
                   className={cn(
                     "link-underline t-small text-ink/70 transition-colors hover:text-ink",
-                    active === item.href && "text-ink",
+                    // Unterstreichung als zweites Merkmal neben Farbe (WCAG 1.4.1)
+                    active === item.href && "text-ink underline underline-offset-4",
                   )}
                   aria-current={active === item.href ? "true" : undefined}
                   data-cursor="hover"

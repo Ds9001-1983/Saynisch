@@ -6,6 +6,7 @@ import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/motion/Reveal";
 import { Marquee } from "@/components/motion/Marquee";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { MediaBadge } from "@/components/ui/MediaBadge";
 
 export function Formate() {
   return (
@@ -77,6 +78,7 @@ export function Formate() {
                     sizes="(max-width: 1024px) 50vw, 33vw"
                     className="object-cover"
                   />
+                  <MediaBadge />
                 </div>
                 <div className="flex flex-col p-4 sm:p-6">
                   <span className="t-kicker text-sage-deep">

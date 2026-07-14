@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FOOTER, SITE, CONTACT } from "@/lib/content";
+import { AI_MEDIA, FOOTER, SITE, CONTACT } from "@/lib/content";
 import { RevealText } from "@/components/motion/RevealText";
 import { MotionToggle } from "@/components/ui/MotionToggle";
 
@@ -73,12 +73,15 @@ export function Footer() {
           </div>
         </div>
 
-        {/* SUPERBRAND-Pflichtzeile */}
+        {/* SUPERBRAND-Pflichtzeile + KI-Hinweis (AI Act Art. 50) */}
         <div className="mt-14 border-t border-line-dark/60 pt-8">
-          <p className="text-sm text-sand-light/70">
-            {FOOTER.superbrand.pre}{" "}
-            <span aria-hidden>{FOOTER.superbrand.heart}</span>{" "}
-            {FOOTER.superbrand.by}{" "}
+          <p className="text-sm text-sand-light/70">{AI_MEDIA.notice}</p>
+          <p className="mt-3 text-sm text-sand-light/70">
+            <span lang="en">
+              {FOOTER.superbrand.pre}{" "}
+              <span aria-hidden>{FOOTER.superbrand.heart}</span>{" "}
+              {FOOTER.superbrand.by}
+            </span>{" "}
             <a
               href={FOOTER.superbrand.href}
               target="_blank"

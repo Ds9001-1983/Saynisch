@@ -26,7 +26,7 @@ const VARIANTS: Record<Variant, string> = {
   primary:
     "bg-sage-deep text-white hover:bg-[#48594f] border border-transparent",
   secondary:
-    "bg-transparent text-ink border border-ink/20 hover:border-ink/50",
+    "bg-transparent text-ink border border-ink/35 hover:border-ink/60",
   ghost: "bg-transparent text-sage-deep border border-transparent px-0",
 };
 

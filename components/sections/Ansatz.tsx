@@ -5,6 +5,7 @@ import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/motion/Reveal";
 import { Parallax } from "@/components/motion/Parallax";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { MediaBadge } from "@/components/ui/MediaBadge";
 
 export function Ansatz() {
   return (
@@ -20,6 +21,7 @@ export function Ansatz() {
               className="object-cover"
             />
           </Parallax>
+          <MediaBadge />
         </div>
 
         <div>

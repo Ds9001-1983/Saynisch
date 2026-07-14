@@ -13,7 +13,7 @@ const initial: KontaktState = { status: "idle" };
 // border-slate statt border-ink/15: Feldgrenzen brauchen 3:1 gegen den
 // Hintergrund (WCAG 1.4.11) — ink/15 lag bei 1,38:1.
 const inputBase =
-  "w-full rounded-[10px] border border-slate bg-clay/40 px-4 py-3 text-ink placeholder:text-slate/60 transition-colors focus:border-sage-deep min-h-[44px]";
+  "w-full rounded-[10px] border border-slate bg-clay/40 px-4 py-3 text-ink placeholder:text-slate transition-colors focus:border-sage-deep min-h-[44px]";
 
 const errorText = "t-caption mt-1.5 text-rust";
 

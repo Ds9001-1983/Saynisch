@@ -42,6 +42,9 @@ export function Faq() {
               id={panelId}
               role="region"
               aria-labelledby={btnId}
+              // Eingeklappt nur 0fr+overflow-hidden — ohne aria-hidden bliebe
+              // der Inhalt für Screenreader lesbar (WCAG 4.1.2)
+              aria-hidden={!isOpen}
               className={cn(
                 "grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                 isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",

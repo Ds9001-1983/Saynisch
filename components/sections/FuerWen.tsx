@@ -4,6 +4,7 @@ import { MEDIA } from "@/lib/assets";
 import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/motion/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
+import { MediaBadge } from "@/components/ui/MediaBadge";
 
 export function FuerWen() {
   return (
@@ -26,6 +27,7 @@ export function FuerWen() {
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="object-cover"
             />
+            <MediaBadge />
           </Reveal>
         </div>
 

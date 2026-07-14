@@ -325,12 +325,20 @@ export const DISCLAIMER = {
   text: "Die Angebote von SAYNISCH dienen der fachlichen Orientierung, der Weiterentwicklung von Beratungskompetenz sowie der Förderung von Kommunikations- und Stresskompetenz. Sie ersetzen keine medizinische, psychotherapeutische, rechtliche oder behördliche Einzelfallprüfung.",
 } as const;
 
+/** EU AI Act Art. 50 (anwendbar ab 2.8.2026): sichtbare Kennzeichnung
+ *  KI-generierter Medien — Badge am Medium + Gesamthinweis. */
+export const AI_MEDIA = {
+  badge: "KI-generiert",
+  notice: "Bild- und Videomaterial dieser Website: KI-generierte Darstellungen.",
+} as const;
+
 export const FOOTER = {
   claim: "Klar. Ruhig. Souverän.",
   nav: NAV,
   legal: [
     { label: "Impressum", href: "/impressum" },
     { label: "Datenschutz", href: "/datenschutz" },
+    { label: "Erklärung zur Barrierefreiheit", href: "/barrierefreiheit" },
   ],
   superbrand: {
     pre: "Made with",
@@ -342,25 +350,30 @@ export const FOOTER = {
   },
 } as const;
 
-/** Alt-Texte der Bildwelt (beschreibend, ruhig; Szenen- und Methodenbilder zeigen Personen bzw. Text als Bedeutungsträger) */
+/** Alt-Texte der Bildwelt (beschreibend, ruhig; Szenen- und Methodenbilder zeigen
+ *  Personen bzw. Text als Bedeutungsträger). Der KI-Zusatz ist die barrierefreie
+ *  Offenlegung nach AI Act Art. 50 — sichtbar übernimmt das der MediaBadge. */
 export const ALT = {
   beratung:
-    "Ruhige Beratungssituation an einem hellen Holztisch, Hände in offener Gesprächsgeste, ohne erkennbare Gesichter.",
+    "Ruhige Beratungssituation an einem hellen Holztisch, Hände in offener Gesprächsgeste, ohne erkennbare Gesichter. KI-generierte Darstellung.",
   praxisempfang:
-    "Wartebereich einer Praxis: Ein aufgebrachter Besucher gestikuliert am Empfangstresen, eine Mitarbeiterin reagiert sichtlich angespannt.",
+    "Wartebereich einer Praxis: Ein aufgebrachter Besucher gestikuliert am Empfangstresen, eine Mitarbeiterin reagiert sichtlich angespannt. KI-generierte Darstellung.",
   beratungstresen:
-    "Beratungstresen: Eine Mitarbeiterin fasst sich erschöpft an die Stirn, während ein Kunde gestikulierend auf sie einredet.",
-  wasser: "Ruhige Makroaufnahme einer einzelnen Welle auf heller, stiller Wasseroberfläche.",
-  ansatz: "Weiches Tageslicht in einem ruhigen, hellen Raum mit Pflanze im Hintergrund.",
-  stresslupe: "Goldene Lupe über dem handgeschriebenen Wort „Stress“ auf einem hellen Holztisch.",
+    "Beratungstresen: Eine Mitarbeiterin fasst sich erschöpft an die Stirn, während ein Kunde gestikulierend auf sie einredet. KI-generierte Darstellung.",
+  wasser:
+    "Ruhige Makroaufnahme einer einzelnen Welle auf heller, stiller Wasseroberfläche. KI-generierte Darstellung.",
+  ansatz:
+    "Weiches Tageslicht in einem ruhigen, hellen Raum mit Pflanze im Hintergrund. KI-generierte Darstellung.",
+  stresslupe:
+    "Goldene Lupe über dem handgeschriebenen Wort „Stress“ auf einem hellen Holztisch. KI-generierte Darstellung.",
   stresslandkarte:
-    "Handgezeichnete Landkarte mit Fluss und Bergen und den Stationen Auslöser, Gedanken, Emotionen, Körperreaktionen und Ressourcen.",
+    "Handgezeichnete Landkarte mit Fluss und Bergen und den Stationen Auslöser, Gedanken, Emotionen, Körperreaktionen und Ressourcen. KI-generierte Darstellung.",
   perspektivwechsel:
-    "Drei Stühle nebeneinander mit beschrifteten Kissen: Ich, andere Person und Beobachter:in.",
+    "Drei Stühle nebeneinander mit beschrifteten Kissen: Ich, andere Person und Beobachter:in. KI-generierte Darstellung.",
   formulierungswerkstatt:
-    "Aufgeschlagenes Notizbuch mit den Kriterien zielklar, wertschätzend, lösungsorientiert und verständlich, daneben ein Stift.",
+    "Aufgeschlagenes Notizbuch mit den Kriterien zielklar, wertschätzend, lösungsorientiert und verständlich, daneben ein Stift. KI-generierte Darstellung.",
   methodenkoffer:
-    "Geöffneter petrolfarbener Koffer mit Methodenkarten für Reflexionsfragen, Übungen, Visualisierung und Ressourcen.",
+    "Geöffneter petrolfarbener Koffer mit Methodenkarten für Reflexionsfragen, Übungen, Visualisierung und Ressourcen. KI-generierte Darstellung.",
 } as const;
 
 export const MICRO = {
