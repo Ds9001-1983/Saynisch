@@ -6,14 +6,16 @@ import { cn } from "@/lib/utils";
  * des Medien-Containers (der Container braucht position:relative).
  * Für Screenreader übernehmen die Alt-Texte die Offenlegung; der Chip bleibt
  * deshalb aria-hidden, sonst würde jedes Bild doppelt angekündigt.
- * Kontrast: Weiß auf ink/85 bleibt auch über hellen Bildern ≥ 4,5:1.
+ * Glas-Optik (Kundenwunsch): milchig + Blur statt dunklem Chip — der volle
+ * Ink-Text auf dem aufgehellten Untergrund hält die Kennzeichnung lesbar
+ * („klar erkennbar" ist Pflicht nach Art. 50 AI Act).
  */
 export function MediaBadge({ className }: { className?: string }) {
   return (
     <span
       aria-hidden
       className={cn(
-        "pointer-events-none absolute bottom-2 right-2 z-10 rounded-full bg-ink/85 px-2.5 py-1 text-[10px] font-medium tracking-[0.08em] text-white",
+        "pointer-events-none absolute bottom-2 right-2 z-10 rounded-full border border-white/50 bg-white/30 px-2.5 py-1 text-[10px] font-medium tracking-[0.08em] text-ink backdrop-blur-md",
         className,
       )}
     >
