@@ -1,13 +1,15 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { ArrowDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowDown, Pause, Play } from "lucide-react";
 import { HERO } from "@/lib/content";
 import { MEDIA } from "@/lib/assets";
 import { Kicker } from "@/components/ui/Kicker";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { RevealText } from "@/components/motion/RevealText";
 import { useLoading } from "@/components/providers/LoadingContext";
+import { useReducedMotion } from "@/components/motion/useReducedMotion";
 
 const AuroraCanvas = dynamic(
   () => import("@/components/webgl/AuroraCanvas").then((m) => m.AuroraCanvas),
@@ -16,6 +18,36 @@ const AuroraCanvas = dynamic(
 
 export function Hero() {
   const { ready } = useLoading();
+  const reduced = useReducedMotion();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoPaused, setVideoPaused] = useState(false);
+
+  // Button-Zustand folgt dem Element — deckt auch Pausen durch den Browser ab.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const onPlay = () => setVideoPaused(false);
+    const onPause = () => setVideoPaused(true);
+    v.addEventListener("play", onPlay);
+    v.addEventListener("pause", onPause);
+    return () => {
+      v.removeEventListener("play", onPlay);
+      v.removeEventListener("pause", onPause);
+    };
+  }, []);
+
+  // WCAG 2.2.2: CSS-Reduced-Motion-Regeln greifen nicht auf <video> —
+  // System-Einstellung und Footer-Toggle müssen das Video selbst stoppen.
+  useEffect(() => {
+    if (reduced) videoRef.current?.pause();
+  }, [reduced]);
+
+  const toggleVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) v.play().catch(() => {});
+    else v.pause();
+  };
 
   return (
     <section
@@ -27,6 +59,7 @@ export function Hero() {
 
       {/* Atmosphärisches Hero-Video (self-hosted) über der Aurora */}
       <video
+        ref={videoRef}
         className="absolute inset-0 -z-0 h-full w-full object-cover opacity-70 mix-blend-multiply"
         poster={MEDIA.heroPoster}
         autoPlay
@@ -39,6 +72,18 @@ export function Hero() {
         <source src={MEDIA.heroVideoWebm} type="video/webm" />
         <source src={MEDIA.heroVideoMp4} type="video/mp4" />
       </video>
+
+      {/* WCAG 2.2.2: sichtbarer Pausier-Mechanismus für das Autoplay-Video */}
+      <button
+        type="button"
+        onClick={toggleVideo}
+        aria-pressed={videoPaused}
+        aria-label={videoPaused ? HERO.videoPlay : HERO.videoPause}
+        data-cursor="hover"
+        className="absolute bottom-6 right-[var(--side-padding)] z-10 rounded-full border border-line/60 bg-paper/80 p-2 text-ink/70 backdrop-blur transition-colors hover:text-ink focus-visible:text-ink"
+      >
+        {videoPaused ? <Play size={16} /> : <Pause size={16} />}
+      </button>
 
       {/* Lesbarkeits-Verlauf */}
       <div

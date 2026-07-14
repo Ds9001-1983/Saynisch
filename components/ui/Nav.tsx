@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { NAV, SITE } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -8,6 +9,7 @@ import { useSmoothScroll } from "@/components/motion/SmoothScrollProvider";
 import { MagneticButton } from "./MagneticButton";
 
 export function Nav() {
+  const router = useRouter();
   const { scrollTo, stop, start } = useSmoothScroll();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -56,18 +58,23 @@ export function Nav() {
 
   // Scroll-Lock bei offenem Mobile-Menü — iOS braucht den Lock auf html UND
   // body, dazu muss Lenis pausieren (läuft sonst hinterm Overlay weiter).
+  // inert hält zugleich den Tab-Fokus vorm Wandern hinter das Overlay
+  // (WCAG 2.4.3 — das Overlay ist nur per opacity/visibility versteckt).
   useEffect(() => {
     if (!open) return;
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     document.documentElement.style.overscrollBehavior = "none";
     stop();
+    const inertTargets = document.querySelectorAll("main, footer");
+    inertTargets.forEach((el) => el.setAttribute("inert", ""));
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("keydown", onKey);
+      inertTargets.forEach((el) => el.removeAttribute("inert"));
       unlock();
     };
   }, [open, stop, unlock]);
@@ -77,12 +84,21 @@ export function Nav() {
     // Synchron entsperren: Lenis' scrollTo ist ein No-Op solange isStopped,
     // und das Effekt-Cleanup läuft erst nach dem React-Commit.
     unlock();
+    // Auf Unterseiten (Impressum/Datenschutz) existieren die Anker nicht —
+    // dorthin navigieren statt Klicks ins Leere laufen zu lassen.
+    if (!document.querySelector(href)) {
+      router.push(`/${href}`);
+      return;
+    }
     scrollTo(href);
   };
 
   return (
     <>
       <header
+        // Auto-Hide macht die Links nur unsichtbar, nicht unfokussierbar —
+        // beim Durchtabben Header wieder einblenden (WCAG 2.4.7).
+        onFocus={() => setHidden(false)}
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-500",
           hidden && !open ? "-translate-y-full" : "translate-y-0",

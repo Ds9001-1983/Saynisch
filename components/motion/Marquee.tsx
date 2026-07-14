@@ -49,7 +49,7 @@ export function Marquee({ items, durationSeconds = 70, className }: MarqueeProps
         aria-pressed={paused}
         aria-label={paused ? "Laufband abspielen" : "Laufband pausieren"}
         data-cursor="hover"
-        className="absolute right-[var(--side-padding)] top-1/2 hidden -translate-y-1/2 rounded-full border border-line/60 bg-paper/80 p-2 text-ink/70 backdrop-blur transition-colors hover:text-ink focus-visible:text-ink md:block"
+        className="absolute right-[var(--side-padding)] top-1/2 -translate-y-1/2 rounded-full border border-line/60 bg-paper/80 p-2 text-ink/70 backdrop-blur transition-colors hover:text-ink focus-visible:text-ink"
       >
         {paused ? <Play size={16} /> : <Pause size={16} />}
       </button>

@@ -19,6 +19,7 @@
   --color-sage-deep: #566f62; /* Akzent-TEXT / Links (AA-sicher) */
   --color-sage-veil: #dce6df; /* Wash / Tags / Badges */
   --color-gold: #b79a6b; /* 2. Akzent — nur Deko, nie Text, < 2 % */
+  --color-rust: #8a3a2a; /* Fehlertext/-rahmen (6,9:1 auf Sand — AA) */
 
   /* ---- Dark-System (seltene Atempausen, z. B. Footer) ---- */
   --color-forest: #1b2420;

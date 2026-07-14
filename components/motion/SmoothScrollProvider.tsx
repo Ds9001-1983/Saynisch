@@ -63,6 +63,9 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     const onFocusIn = (e: FocusEvent) => {
       const el = e.target as HTMLElement | null;
       if (!el || el.closest("[data-cursor]") === el) return;
+      // Programmatisch fokussierte Scroll-Ziele (tabindex=-1) nicht nachjustieren —
+      // der Smooth-Scroll hat sie gerade platziert.
+      if (el.getAttribute("tabindex") === "-1") return;
       const rect = el.getBoundingClientRect();
       if (rect.top < 80 || rect.bottom > window.innerHeight - 80) {
         lenis.scrollTo(el, { offset: -120 });
@@ -86,12 +89,29 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
 
   const scrollTo = useCallback<LenisCtx["scrollTo"]>((target, opts) => {
     const offset = opts?.offset ?? -80;
+    // Fokus dem Sprungziel nachführen (WCAG 2.4.3): preventDefault + Lenis
+    // lässt den Tab-Startpunkt sonst am angeklickten Link zurück.
+    const focusTarget = () => {
+      if (typeof target === "number") return;
+      const el =
+        typeof target === "string"
+          ? document.querySelector<HTMLElement>(target)
+          : target;
+      if (!el) return;
+      el.setAttribute("tabindex", "-1");
+      el.focus({ preventScroll: true });
+    };
     if (lenisRef.current) {
-      lenisRef.current.scrollTo(target, { offset, duration: 1.4 });
+      lenisRef.current.scrollTo(target, {
+        offset,
+        duration: 1.4,
+        onComplete: focusTarget,
+      });
     } else if (typeof target !== "number") {
       const el =
         typeof target === "string" ? document.querySelector(target) : target;
       el?.scrollIntoView({ behavior: "auto", block: "start" });
+      focusTarget();
     } else {
       window.scrollTo({ top: target });
     }

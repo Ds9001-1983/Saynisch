@@ -58,6 +58,8 @@ export const HERO = {
   ctaSecondary: { label: "Themen ansehen", href: "#schwerpunkte" },
   footnote: "Branchenoffen · Für Einzelpersonen, Teams und Einrichtungen · Inhouse oder online",
   scrollCue: "Weiterlesen",
+  videoPause: "Hintergrundvideo pausieren",
+  videoPlay: "Hintergrundvideo abspielen",
 } as const;
 
 export const LEITSATZ = {
@@ -291,7 +293,8 @@ export const KONTAKT = {
   body: "Erzählen Sie mir von Ihrem Anliegen: Wen möchten Sie erreichen, worum geht es, und welcher Rahmen schwebt Ihnen vor? Im Vorgespräch klären wir Format und Inhalte und stimmen die Schwerpunkte auf Ihre Situation ab — unverbindlich und in Ruhe.",
   fields: {
     name: "Ihr Name",
-    contact: "E-Mail oder Telefon",
+    email: "E-Mail",
+    phone: "Telefon (optional)",
     org: "Einrichtung / Team (optional)",
     formatLabel: "Bevorzugtes Format",
     formatOptions: [

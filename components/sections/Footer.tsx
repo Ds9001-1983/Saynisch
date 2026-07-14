@@ -22,8 +22,10 @@ export function Footer() {
             <ul className="flex flex-col gap-2.5">
               {FOOTER.nav.map((item) => (
                 <li key={item.href}>
+                  {/* "/#…" statt "#…": Der Footer erscheint auch auf Impressum/
+                      Datenschutz — dort existieren die Anker nicht (WCAG 2.4.4). */}
                   <a
-                    href={item.href}
+                    href={`/${item.href}`}
                     className="link-underline text-sand-light/80 transition-colors hover:text-sand-light"
                     data-cursor="hover"
                   >

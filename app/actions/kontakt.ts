@@ -47,7 +47,8 @@ export async function submitKontakt(
   }
 
   const name = (formData.get("name") as string)?.trim() ?? "";
-  const contact = (formData.get("contact") as string)?.trim() ?? "";
+  const email = (formData.get("email") as string)?.trim() ?? "";
+  const phone = (formData.get("phone") as string)?.trim() ?? "";
   const org = (formData.get("org") as string)?.trim() ?? "";
   const format = (formData.get("format") as string)?.trim() ?? "";
   const message = (formData.get("message") as string)?.trim() ?? "";
@@ -55,8 +56,8 @@ export async function submitKontakt(
 
   const fieldErrors: Record<string, string> = {};
   if (name.length < 2) fieldErrors.name = "Bitte geben Sie Ihren Namen an.";
-  if (contact.length < 4)
-    fieldErrors.contact = "Bitte geben Sie eine E-Mail oder Telefonnummer an.";
+  if (!isEmail(email))
+    fieldErrors.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
   if (message.length < 10)
     fieldErrors.message = "Bitte beschreiben Sie Ihr Anliegen kurz.";
   if (!consent) fieldErrors.consent = "Bitte stimmen Sie der Verarbeitung zu.";
@@ -68,7 +69,8 @@ export async function submitKontakt(
   const subject = `Neue Anfrage über die Website — ${name}`;
   const text = [
     `Name: ${name}`,
-    `Kontakt: ${contact}`,
+    `E-Mail: ${email}`,
+    phone && `Telefon: ${phone}`,
     org && `Einrichtung/Team: ${org}`,
     format && `Bevorzugtes Format: ${format}`,
     "",
@@ -103,13 +105,12 @@ export async function submitKontakt(
       secure: port === 465,
       auth: { user: smtpUser, pass: smtpPass },
     });
-    const replyTo = isEmail(contact) ? contact : undefined;
     await transporter.sendMail({
       from: `"${SITE.brand} Website" <${fromAddr}>`,
       to,
       subject,
       text,
-      ...(replyTo ? { replyTo } : {}),
+      replyTo: email,
     });
     return { status: "success" };
   } catch (err) {

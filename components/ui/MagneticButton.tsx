@@ -21,8 +21,10 @@ interface MagneticButtonProps {
 }
 
 const VARIANTS: Record<Variant, string> = {
+  // sage-deep statt sage: Weiß auf #6e8f7d erreicht nur 3,57:1 (WCAG 1.4.3
+  // verlangt 4,5:1); auf #566f62 sind es 5,46:1, Hover 7,5:1.
   primary:
-    "bg-sage text-white hover:bg-sage-deep border border-transparent",
+    "bg-sage-deep text-white hover:bg-[#48594f] border border-transparent",
   secondary:
     "bg-transparent text-ink border border-ink/20 hover:border-ink/50",
   ghost: "bg-transparent text-sage-deep border border-transparent px-0",
