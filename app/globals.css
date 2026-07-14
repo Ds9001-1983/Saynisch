@@ -294,6 +294,21 @@
   color: var(--color-sage-deep);
 }
 
+/* Helle Cursor-Farben über dunklen Sektionen (.on-dark: Footer, AuroraBreak) */
+.cursor-dot[data-on-dark] {
+  background-color: var(--color-sand-light);
+}
+.cursor-ring[data-on-dark] {
+  border-color: color-mix(in srgb, var(--color-sand-light) 45%, transparent);
+}
+.cursor-ring[data-on-dark][data-variant="hover"] {
+  border-color: color-mix(in srgb, var(--color-sage-glow) 70%, transparent);
+  background-color: color-mix(in srgb, var(--color-sage-glow) 10%, transparent);
+}
+.cursor-ring[data-on-dark] .cursor-label {
+  color: var(--color-sage-haze);
+}
+
 /* Native Cursor nur ausblenden, wenn Custom-Cursor aktiv ist (fine pointer) */
 @media (pointer: fine) {
   body.cursor-active,

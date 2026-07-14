@@ -44,7 +44,13 @@ export function Cursor() {
     };
 
     const over = (e: PointerEvent) => {
-      const el = (e.target as HTMLElement)?.closest<HTMLElement>('[data-cursor="hover"]');
+      const target = e.target as HTMLElement | null;
+      // Auf dunklen Sektionen (.on-dark: Footer, AuroraBreak) auf helle
+      // Cursor-Farben umschalten — Ink ist dort unsichtbar.
+      const dark = !!target?.closest(".on-dark");
+      ring.current?.toggleAttribute("data-on-dark", dark);
+      dot.current?.toggleAttribute("data-on-dark", dark);
+      const el = target?.closest<HTMLElement>('[data-cursor="hover"]');
       if (el) {
         ring.current?.setAttribute("data-variant", "hover");
         setLabel(el.dataset.cursorLabel ?? "");
