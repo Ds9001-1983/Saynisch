@@ -5,15 +5,22 @@ import { Plus } from "lucide-react";
 import { FAQ } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-export function Faq() {
+export function Faq({
+  items = FAQ.items,
+  idPrefix = "faq",
+}: {
+  items?: readonly { q: string; a: string }[];
+  /** Eindeutige IDs je Seite (aria-controls/-labelledby). */
+  idPrefix?: string;
+}) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <div className="divide-y divide-ink/10 border-y border-ink/10">
-      {FAQ.items.map((item, i) => {
+      {items.map((item, i) => {
         const isOpen = open === i;
-        const panelId = `faq-panel-${i}`;
-        const btnId = `faq-btn-${i}`;
+        const panelId = `${idPrefix}-panel-${i}`;
+        const btnId = `${idPrefix}-btn-${i}`;
         return (
           <div key={i}>
             <h3>

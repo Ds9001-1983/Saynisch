@@ -48,9 +48,12 @@ export function Ansatz() {
             ))}
           </ul>
 
-          <div className="mt-9">
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
             <MagneticButton href={ANSATZ.cta.href} variant="secondary" cursorLabel="Anfragen">
               {ANSATZ.cta.label}
+            </MagneticButton>
+            <MagneticButton href={ANSATZ.more.href} variant="ghost">
+              {ANSATZ.more.label}
             </MagneticButton>
           </div>
         </div>

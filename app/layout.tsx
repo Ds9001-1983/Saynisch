@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk, Martian_Mono } from "next/font/google";
 import "./globals.css";
-import { buildMetadata, jsonLd } from "@/lib/seo";
+import { buildMetadata, siteJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { MICRO } from "@/lib/content";
 import { AppProviders } from "@/components/providers/AppProviders";
 
@@ -37,10 +38,7 @@ export default function RootLayout({
       className={`${fraunces.variable} ${hanken.variable} ${martian.variable} antialiased`}
     >
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }}
-        />
+        <JsonLd data={siteJsonLd()} />
         <a href="#main" className="skip-link">
           {MICRO.skipLink}
         </a>

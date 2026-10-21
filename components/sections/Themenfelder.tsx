@@ -5,7 +5,7 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export function Themenfelder() {
   return (
-    <section className="section-pad">
+    <section id="themenfelder" className="section-pad">
       <div className="container-content">
         <div className="max-w-[60ch]">
           <Kicker className="mb-6">{THEMENFELDER.kicker}</Kicker>

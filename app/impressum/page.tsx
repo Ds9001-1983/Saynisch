@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { LegalShell } from "@/components/legal/LegalShell";
 import { CONTACT, SITE } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Impressum",
-  robots: { index: false, follow: true },
-};
+export function generateMetadata(
+  _props: unknown,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  return pageMetadata({ path: "/impressum", title: "Impressum", noindex: true }, parent);
+}
 
 export default function ImpressumPage() {
   return (

@@ -1,11 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { LegalShell } from "@/components/legal/LegalShell";
 import { CONTACT, SITE } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Erklärung zur Barrierefreiheit",
-  robots: { index: false, follow: true },
-};
+export function generateMetadata(
+  _props: unknown,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  return pageMetadata({ path: "/barrierefreiheit", title: "Erklärung zur Barrierefreiheit", noindex: true }, parent);
+}
 
 export default function BarrierefreiheitPage() {
   return (

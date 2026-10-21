@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { NAV, SITE } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,9 @@ import { MagneticButton } from "./MagneticButton";
 
 export function Nav() {
   const router = useRouter();
+  // Auf Unterseiten zeigen die Links auf die Startseiten-Anker ("/#…") —
+  // für Crawler, Mittelklick und Kontakt-CTA (dort gibt es kein #kontakt).
+  const base = usePathname() === "/" ? "" : "/";
   const { scrollTo, stop, start } = useSmoothScroll();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -112,7 +115,7 @@ export function Nav() {
           className="container-bleed flex h-[72px] items-center justify-between"
         >
           <a
-            href="#top"
+            href={`${base}#top`}
             onClick={(e) => {
               e.preventDefault();
               go("#top");
@@ -127,7 +130,7 @@ export function Nav() {
             {NAV.map((item) => (
               <li key={item.href}>
                 <a
-                  href={item.href}
+                  href={`${base}${item.href}`}
                   onClick={(e) => {
                     e.preventDefault();
                     go(item.href);
@@ -149,7 +152,7 @@ export function Nav() {
           <div className="flex items-center gap-3">
             <div className="hidden sm:block">
               <MagneticButton
-                href="#kontakt"
+                href={`${base}#kontakt`}
                 variant="primary"
                 cursorLabel="Anfragen"
                 className="px-5 py-2.5 text-[0.8rem]"
@@ -186,7 +189,7 @@ export function Nav() {
           {NAV.map((item) => (
             <li key={item.href}>
               <a
-                href={item.href}
+                href={`${base}${item.href}`}
                 onClick={(e) => {
                   e.preventDefault();
                   go(item.href);
@@ -200,7 +203,7 @@ export function Nav() {
         </ul>
         <div className="mt-auto">
           <MagneticButton
-            href="#kontakt"
+            href={`${base}#kontakt`}
             variant="primary"
             className="w-full"
             onClick={() => {

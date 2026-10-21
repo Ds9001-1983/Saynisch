@@ -96,19 +96,23 @@ export function Hero() {
       />
 
       <div className="container-bleed relative z-10 pb-[clamp(48px,8vh,120px)] pt-32">
-        <Kicker className="mb-7">{HERO.kicker}</Kicker>
-
-        <RevealText
-          as="h1"
-          play={ready}
-          className="t-mega max-w-[16ch] font-display text-ink"
-        >
-          {HERO.headlineLines.map((line, i) => (
-            <span key={i} className="block">
-              {line}
-            </span>
-          ))}
-        </RevealText>
+        {/* Kicker gehört zum <h1>: Er trägt die Suchbegriffe sichtbar in der
+            Hauptüberschrift, der Claim darunter bleibt die Marke. */}
+        <h1>
+          <Kicker className="mb-7">{HERO.kicker}</Kicker>
+          <span className="sr-only"> — </span>
+          <RevealText
+            as="span"
+            play={ready}
+            className="t-mega block max-w-[16ch] font-display text-ink"
+          >
+            {HERO.headlineLines.map((line, i) => (
+              <span key={i} className="block">
+                {line}
+              </span>
+            ))}
+          </RevealText>
+        </h1>
 
         <p className="t-lead mt-8 max-w-[46ch] text-slate">{HERO.subline}</p>
 

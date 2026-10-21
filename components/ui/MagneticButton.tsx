@@ -112,6 +112,8 @@ export function MagneticButton({
         ref={ref as React.RefObject<HTMLAnchorElement>}
         href={href}
         className={classes}
+        // z. B. Mobile-Menü schließen, wenn der CTA auf eine andere Seite führt
+        onClick={onClick}
         {...cursorProps}
       >
         {children}

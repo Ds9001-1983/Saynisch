@@ -10,10 +10,12 @@ export function Kicker({
   onDark?: boolean;
 }) {
   return (
-    <span className={cn("t-kicker inline-flex items-center gap-3", className)}>
+    <span className={cn("t-kicker inline-flex items-start gap-3", className)}>
+      {/* Strich auf Höhe der ersten Zeile (line-height 1.3 → Mitte bei 0.65em),
+          damit er bei umbrechenden Kickern nicht mittig im Block hängt */}
       <span
         aria-hidden
-        className={cn("h-px w-6", onDark ? "bg-sage-glow" : "bg-sage")}
+        className={cn("mt-[0.65em] h-px w-6 shrink-0", onDark ? "bg-sage-glow" : "bg-sage")}
       />
       {children}
     </span>

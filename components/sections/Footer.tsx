@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AI_MEDIA, FOOTER, SITE, CONTACT } from "@/lib/content";
+import { AI_MEDIA, FOOTER, LANDINGPAGES, SITE, CONTACT } from "@/lib/content";
 import { RevealText } from "@/components/motion/RevealText";
 import { MotionToggle } from "@/components/ui/MotionToggle";
 
@@ -15,7 +15,7 @@ export function Footer() {
         </RevealText>
         <p className="t-lead mt-4 text-sage-haze">{FOOTER.claim}</p>
 
-        <div className="mt-16 grid gap-10 border-t border-line-dark/60 pt-12 md:grid-cols-3">
+        <div className="mt-16 grid gap-10 border-t border-line-dark/60 pt-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Navigation */}
           <nav aria-label="Footer-Navigation">
             <h2 className="t-kicker mb-5 text-sage-haze">Navigation</h2>
@@ -31,6 +31,33 @@ export function Footer() {
                   >
                     {item.label}
                   </a>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href={FOOTER.sitemap.href}
+                  className="link-underline text-sand-light/80 transition-colors hover:text-sand-light"
+                  data-cursor="hover"
+                >
+                  {FOOTER.sitemap.label}
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          {/* Themen-Seiten (Landingpages) — interne Verlinkung von jeder Seite */}
+          <nav aria-label="Themen">
+            <h2 className="t-kicker mb-5 text-sage-haze">{FOOTER.topicsTitle}</h2>
+            <ul className="flex flex-col gap-2.5">
+              {LANDINGPAGES.map((page) => (
+                <li key={page.slug}>
+                  <Link
+                    href={`/${page.slug}`}
+                    className="link-underline text-sand-light/80 transition-colors hover:text-sand-light"
+                    data-cursor="hover"
+                  >
+                    {page.link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
