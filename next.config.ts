@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // noindex auf allen Nebenadressen (*.vercel.app, Previews), nur die Hauptdomain bleibt indexierbar.
+      // Next.js verankert den Host-Wert als regulären Ausdruck (^…$), deshalb sind die Punkte escaped.
+      {
+        source: "/:path*",
+        missing: [{ type: "host", value: "www\\.saynisch\\.com" }],
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
 };
